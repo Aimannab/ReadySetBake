@@ -59,8 +59,8 @@ public class MainActivity extends AppCompatActivity /*implements RecipeAdapter.L
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
-        //getSupportActionBar().setHomeButtonEnabled(false);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setHomeButtonEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("ReadySetBake!");
 
         // Get the IdlingResource instance

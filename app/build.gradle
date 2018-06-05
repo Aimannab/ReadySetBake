@@ -32,6 +32,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile group: 'com.android.support.test.espresso', name: 'espresso-idling-resource', version: '3.0.2'
+    compile 'com.android.support:design:26.1.0' //design support library
 }
 
 configurations.all {
