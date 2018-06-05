@@ -1,6 +1,5 @@
 package com.example.android.readysetbake;
 
-import android.app.FragmentManager;
 import android.graphics.Movie;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.support.v4.app.FragmentManager;
 
 import retrofit.Callback;
 
@@ -28,7 +28,7 @@ import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class MainActivity extends AppCompatActivity /*implements RecipeAdapter.ListItemClickListener*/{
+public class MainActivity extends AppCompatActivity /*implements RecipeAdapter.RecipeListItemClickListener*/{
     private RecyclerView rRecyclerView;
     private RecipesAdapter recipesAdapter;
 
@@ -57,18 +57,28 @@ public class MainActivity extends AppCompatActivity /*implements RecipeAdapter.L
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe);
 
+        //Setting up Toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setHomeButtonEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("ReadySetBake!");
 
+        //Creating a new RecipeFragment
+        RecipeFragment recipeFragment = new RecipeFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        fragmentManager.beginTransaction()
+                .add(R.id.recipe_card_container, recipeFragment)
+                .commit();
+
         // Get the IdlingResource instance
         getIdlingResource();
+
     }
 
     /*@Override
-    public void onListItemClick(Recipe selectedItemIndex) {
+    public void onRecipeListItemClick(Recipe selectedItemIndex) {
 
         Bundle selectedRecipeBundle = new Bundle();
         ArrayList<Recipe> selectedRecipe = new ArrayList<>();

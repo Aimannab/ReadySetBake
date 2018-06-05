@@ -11,7 +11,7 @@
     tools:showIn="@layout/activity_main">
 
     <LinearLayout
-        android:id="@+id/android_me_linear_layout"
+        android:id="@+id/recipe_linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
@@ -27,10 +27,19 @@
         app:theme="@style/ToolBarStyle"
         />
 
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.android.readysetbake.MainActivity">
+
     <FrameLayout android:id="@+id/recipe_card_container"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:scaleType="centerInside"/>
+
+    </ScrollView>
 
 
 </android.support.v7.widget.RecyclerView>

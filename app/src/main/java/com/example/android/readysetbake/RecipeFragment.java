@@ -46,7 +46,7 @@ public class RecipeFragment extends Fragment{
 
         //Setting up Grid Layout for the MainActivity UI
         if (rootView.getTag() != null && rootView.getTag().equals("phone-land")) {
-            GridLayoutManager mLayoutManager = new GridLayoutManager(getContext(), 4);
+            GridLayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
             recyclerView.setLayoutManager(mLayoutManager);
         } else {
             LinearLayoutManager mLayoutManager = new LinearLayoutManager(getContext());

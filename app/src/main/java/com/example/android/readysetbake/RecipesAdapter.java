@@ -23,6 +23,11 @@ public class RecipesAdapter extends RecyclerView.Adapter<MainActivity.RecipeCard
     private LayoutInflater rInflater;
     private Context rContext;
 
+    //Interface for MainActivity for clicking on Recipes List
+    public interface RecipeListItemClickListener {
+        void onRecipeListItemClick(Recipe selectedItemIndex);
+    }
+
     public RecipesAdapter (Context context) {
         this.rContext = context;
         this.rInflater = LayoutInflater.from(context);

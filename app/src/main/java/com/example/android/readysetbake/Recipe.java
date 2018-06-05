@@ -4,6 +4,7 @@ import android.graphics.Movie;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,17 +21,21 @@ public class Recipe implements Parcelable {
     private String image;
 
     protected Recipe(Parcel in) {
-        if (in.readByte() == 0) {
-            id = null;
-        } else {
-            id = in.readInt();
-        }
+        id = in.readByte() == 0x00 ? null : in.readInt();
         name = in.readString();
-        if (in.readByte() == 0) {
-            servings = null;
+        if (in.readByte() == 0x01) {
+            ingredients = new ArrayList<>();
+            in.readList(ingredients, Ingredient.class.getClassLoader());
         } else {
-            servings = in.readInt();
+            ingredients = null;
         }
+        if (in.readByte() == 0x01) {
+            steps = new ArrayList<>();
+            in.readList(steps, Step.class.getClassLoader());
+        } else {
+            steps = null;
+        }
+        servings = in.readByte() == 0x00 ? null : in.readInt();
         image = in.readString();
     }
 
