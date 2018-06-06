@@ -1,5 +1,6 @@
 package com.example.android.readysetbake;
 
+import android.content.Intent;
 import android.graphics.Movie;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,17 +19,11 @@ import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 import android.support.v4.app.FragmentManager;
 
-import retrofit.Callback;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit.RequestInterceptor;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
-public class MainActivity extends AppCompatActivity /*implements RecipeAdapter.RecipeListItemClickListener*/{
+public class MainActivity extends AppCompatActivity implements RecipesAdapter.RecipeListItemClickListener{
     private RecyclerView rRecyclerView;
     private RecipesAdapter recipesAdapter;
 
@@ -55,7 +50,7 @@ public class MainActivity extends AppCompatActivity /*implements RecipeAdapter.R
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipe);
+        setContentView(R.layout.activity_main);
 
         //Setting up Toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -64,49 +59,25 @@ public class MainActivity extends AppCompatActivity /*implements RecipeAdapter.R
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("ReadySetBake!");
 
-        //Creating a new RecipeFragment
-        RecipeFragment recipeFragment = new RecipeFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
-        fragmentManager.beginTransaction()
-                .add(R.id.recipe_card_container, recipeFragment)
-                .commit();
-
-        // Get the IdlingResource instance
-        getIdlingResource();
-
     }
 
-    /*@Override
-    public void onRecipeListItemClick(Recipe selectedItemIndex) {
+    @Override
+    public void onRecipeListItemClick(Recipe selectedRecipeItemIndex) {
 
-        Bundle selectedRecipeBundle = new Bundle();
-        ArrayList<Recipe> selectedRecipe = new ArrayList<>();
-        selectedRecipe.add(selectedItemIndex);
-        selectedRecipeBundle.putParcelableArrayList(SELECTED_RECIPES,selectedRecipe);
+        Bundle recipeBundleSelected = new Bundle();
+        ArrayList<Recipe> recipeSelected = new ArrayList<>();
+        recipeSelected.add(selectedRecipeItemIndex);
+        recipeBundleSelected.putParcelableArrayList(SELECTED_RECIPES,recipeSelected);
 
         final Intent intent = new Intent(this, RecipeDetailActivity.class);
-        intent.putExtras(selectedRecipeBundle);
+        intent.putExtras(recipeBundleSelected);
         startActivity(intent);
 
-    }*/
-
+    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-    }
-
-    public static class RecipeCardHolder extends RecyclerView.ViewHolder
-    {
-        public ImageView imageView;
-        public TextView textView;
-        public RecipeCardHolder(View itemView)
-        {
-            super(itemView);
-            imageView = (ImageView) itemView.findViewById(R.id.imageView);
-            textView = (TextView) itemView.findViewById(R.id.title);
-        }
     }
 }
 

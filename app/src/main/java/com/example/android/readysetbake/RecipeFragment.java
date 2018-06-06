@@ -7,11 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +42,7 @@ public class RecipeFragment extends Fragment{
 
         View rootView = inflater.inflate(R.layout.fragment_recipe, container, false);
 
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recipe_recycler);
         final RecipesAdapter recipesAdapter = new RecipesAdapter((MainActivity) getActivity());
         recyclerView.setAdapter(recipesAdapter);
 

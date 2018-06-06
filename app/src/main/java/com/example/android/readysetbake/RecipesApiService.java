@@ -4,11 +4,8 @@ package com.example.android.readysetbake;
 import retrofit2.Call;
 
 import java.util.ArrayList;
-
-import retrofit.http.GET;
-
-import retrofit.Callback;
 import retrofit2.Call;
+import retrofit2.http.GET;
 
 /**
  * Created by Aiman Nabeel on 04/06/2018.

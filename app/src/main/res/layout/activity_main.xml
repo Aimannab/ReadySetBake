@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
 
+    android:id="@+id/recipe_linear_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.android.readysetbake.MainActivity"
-    android:id="@+id/recyclerView"
-    tools:showIn="@layout/activity_main">
-
-    <LinearLayout
-        android:id="@+id/recipe_linear_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="vertical"/>
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -27,19 +17,11 @@
         app:theme="@style/ToolBarStyle"
         />
 
-    <ScrollView
+    <fragment
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/recipe_fragment_body_part"
+        android:name="com.example.android.readysetbake.RecipeFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.android.readysetbake.MainActivity">
+        android:layout_height="match_parent" />
 
-    <FrameLayout android:id="@+id/recipe_card_container"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:scaleType="centerInside"/>
-
-    </ScrollView>
-
-
-</android.support.v7.widget.RecyclerView>
+</LinearLayout>

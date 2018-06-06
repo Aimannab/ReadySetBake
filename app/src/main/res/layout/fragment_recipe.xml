@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/recipe_card">
+    android:layout_height="wrap_content"
+    android:padding="16dp">
 
-    <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/imageView"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recipe_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        tools:ignore="ContentDescription"/>
-
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="wrap_content"
+        />
+</FrameLayout>

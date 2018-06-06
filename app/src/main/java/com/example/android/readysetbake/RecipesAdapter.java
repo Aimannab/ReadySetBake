@@ -2,10 +2,13 @@ package com.example.android.readysetbake;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -17,38 +20,42 @@ import java.util.List;
  */
 
 //Ref: http://mateoj.com/2015/10/06/creating-movies-app-retrofit-picasso-android/
-public class RecipesAdapter extends RecyclerView.Adapter<MainActivity.RecipeCardHolder> {
+public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeCardHolder> {
 
     private ArrayList<Recipe> recipeList;
-    private LayoutInflater rInflater;
     private Context rContext;
+    final private RecipeListItemClickListener rListener;
 
     //Interface for MainActivity for clicking on Recipes List
     public interface RecipeListItemClickListener {
         void onRecipeListItemClick(Recipe selectedItemIndex);
     }
 
-    public RecipesAdapter (Context context) {
-        this.rContext = context;
-        this.rInflater = LayoutInflater.from(context);
-        this.recipeList = new ArrayList<>();
+    public RecipesAdapter (RecipeListItemClickListener rOnClickListener) {
+        rListener = rOnClickListener;
+    }
+
+    public void setRecipeList(ArrayList<Recipe> recipesIn, Context context) {
+        recipeList = recipesIn;
+        rContext=context;
+        notifyDataSetChanged();
     }
 
     @Override
-    public MainActivity.RecipeCardHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecipesAdapter.RecipeCardHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         Context context = parent.getContext();
-        int layoutIdForListItem = R.layout.fragment_recipe;
+        int layoutIdForListItem = R.layout.recipe_card_items;
 
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(layoutIdForListItem, parent,  false);
-        MainActivity.RecipeCardHolder viewHolder = new MainActivity.RecipeCardHolder(view);
+        RecipesAdapter.RecipeCardHolder viewHolder = new RecipesAdapter.RecipeCardHolder(view);
 
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(MainActivity.RecipeCardHolder holder, int position) {
+    public void onBindViewHolder(RecipesAdapter.RecipeCardHolder holder, int position) {
 
         holder.textView.setText(recipeList.get(position).getName());
         String imageUrl=recipeList.get(position).getImage();
@@ -66,9 +73,23 @@ public class RecipesAdapter extends RecyclerView.Adapter<MainActivity.RecipeCard
         return (recipeList == null) ? 0 : recipeList.size();
     }
 
-    public void setRecipeList(ArrayList<Recipe> recipesIn, Context context) {
-        recipeList = recipesIn;
-        rContext=context;
-        notifyDataSetChanged();
+
+    class RecipeCardHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    {
+        public ImageView imageView;
+        public TextView textView;
+
+        public RecipeCardHolder(View itemView)
+        {
+            super(itemView);
+            imageView = (ImageView) itemView.findViewById(R.id.imageView);
+            textView = (TextView) itemView.findViewById(R.id.title);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int clickedRecipe = getAdapterPosition();
+            rListener.onRecipeListItemClick(recipeList.get(clickedRecipe));
+        }
     }
 }
