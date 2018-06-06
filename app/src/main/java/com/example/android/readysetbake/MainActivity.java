@@ -26,6 +26,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements RecipesAdapter.RecipeListItemClickListener{
     private RecyclerView rRecyclerView;
     private RecipesAdapter recipesAdapter;
+    boolean recipeTwoPane;
 
     static String ALL_RECIPES="All_Recipes";
     static String SELECTED_RECIPES="Selected_Recipes";
@@ -53,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.Re
         setContentView(R.layout.activity_main);
 
         //Setting up Toolbar
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
+        Toolbar mainToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mainToolbar);
         getSupportActionBar().setHomeButtonEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setTitle("ReadySetBake!");
@@ -64,21 +65,32 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.Re
     @Override
     public void onRecipeListItemClick(Recipe selectedRecipeItemIndex) {
 
-        Bundle recipeBundleSelected = new Bundle();
-        ArrayList<Recipe> recipeSelected = new ArrayList<>();
-        recipeSelected.add(selectedRecipeItemIndex);
-        recipeBundleSelected.putParcelableArrayList(SELECTED_RECIPES,recipeSelected);
+        if (recipeTwoPane) {
+            // In two-pane mode, show the detail view in this activity by
+            // adding or replacing the detail fragment using a
+            // fragment transaction.
+            View view = findViewById(R.id.imageView);
+            if (view.getVisibility() == View.INVISIBLE) {
+                findViewById(R.id.imageView).setVisibility(View.VISIBLE);
+            }
+        } else {
 
-        final Intent intent = new Intent(this, RecipeDetailActivity.class);
-        intent.putExtras(recipeBundleSelected);
-        startActivity(intent);
+            Bundle recipeBundleSelected = new Bundle();
+            ArrayList<Recipe> recipeSelected = new ArrayList<>();
+            recipeSelected.add(selectedRecipeItemIndex);
+            recipeBundleSelected.putParcelableArrayList(SELECTED_RECIPES, recipeSelected);
 
+            final Intent intent = new Intent(this, RecipeDetailActivity.class);
+            intent.putExtras(recipeBundleSelected);
+            startActivity(intent);
+
+        }
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+        @Override
+        public void onSaveInstanceState (Bundle outState){
+            super.onSaveInstanceState(outState);
+        }
     }
-}
 
 

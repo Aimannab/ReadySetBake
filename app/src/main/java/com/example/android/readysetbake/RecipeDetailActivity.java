@@ -25,18 +25,19 @@ public class RecipeDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
 
-        /*Toolbar rToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(rToolbar);
+        //Setting up each Recipe's Toolbar
+        Toolbar recipeToolbar = (Toolbar) findViewById(R.id.recipeToolbar);
+        setSupportActionBar(recipeToolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(recipeName);
 
         //Setting up Navigation on Toolbar
-        rToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        recipeToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-                if (findViewById(R.id.) ==null) {
+                if (findViewById(R.id.recipe_fragment_container) ==null) {
                     if (fragmentManager.getBackStackEntryCount()> 1) {
                         //Return to Recipe Detail screen
                         fragmentManager.popBackStack(STACK_RECIPE_DETAIL, 0);
@@ -51,7 +52,7 @@ public class RecipeDetailActivity extends AppCompatActivity {
                 }
 
             }
-        });*/
+        });
     }
 
 

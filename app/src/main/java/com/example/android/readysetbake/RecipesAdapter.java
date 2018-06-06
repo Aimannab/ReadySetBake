@@ -84,6 +84,8 @@ public class RecipesAdapter extends RecyclerView.Adapter<RecipesAdapter.RecipeCa
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
             textView = (TextView) itemView.findViewById(R.id.title);
+
+            itemView.setOnClickListener(this);
         }
 
         @Override

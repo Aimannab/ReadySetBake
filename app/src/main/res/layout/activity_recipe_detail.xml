@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recipe_linear_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/recipe_detail_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
-    <include
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/recipeToolbar"
+        style="@style/ThemeToolbar"
         layout="@layout/toolbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="?actionBarSize"
+        android:background="@color/colorAccent"
+        app:theme="@style/ToolBarStyle"
+        />
 
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/recipe_fragment_container"
         android:layout_width="match_parent"
         android:scaleType="centerInside"
         android:layout_height="match_parent" />
