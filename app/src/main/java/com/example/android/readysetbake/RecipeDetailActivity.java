@@ -7,6 +7,7 @@ import android.view.View;
 import android.support.v4.app.FragmentManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -48,7 +49,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
             //phone-land code pending
 
         } else {
-            recipeName = savedInstanceState.getString("RecipeTitle");
+            recipeName = savedInstanceState.getString("Title");
         }
 
         //Setting up each Recipe's Toolbar
@@ -84,16 +85,34 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("RecipeTitle",recipeName);
+        outState.putString("Title",recipeName);
     }
 
-    //Enabling clickListenr for RecipeStepDetailFragment here
+    //Enabling clickListener for RecipeStepDetailFragment here
     @Override
-    public void onRecipeStepDetailItemClick(Recipe selectedStepItemIndex) {
+    public void onRecipeStepDetailItemClick(List<Step> stepsOut, int itemSelectedIndex, String recipeName) {
 
         final RecipeStepDetailFragment fragment = new RecipeStepDetailFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         getSupportActionBar().setTitle(recipeName);
+
+        Bundle stepBundle = new Bundle();
+        stepBundle.putParcelableArrayList(SELECTED_STEPS,(ArrayList<Step>) stepsOut);
+        stepBundle.putInt(SELECTED_INDEX,itemSelectedIndex);
+        stepBundle.putString("Title",recipeName);
+        fragment.setArguments(stepBundle);
+
+        if (findViewById(R.id.recipe_detail_layout).getTag()!=null && findViewById(R.id.recipe_detail_layout).getTag().equals("tablet-land")) {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.recipe_fragment_container2, fragment).addToBackStack(STACK_RECIPE_STEP_DETAIL)
+                    .commit();
+
+        }
+        else {
+            fragmentManager.beginTransaction()
+                    .replace(R.id.recipe_fragment_container, fragment).addToBackStack(STACK_RECIPE_STEP_DETAIL)
+                    .commit();
+        }
     }
 }

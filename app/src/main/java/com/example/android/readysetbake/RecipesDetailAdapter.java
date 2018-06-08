@@ -13,6 +13,7 @@ import java.util.List;
  * Created by Aiman Nabeel on 07/06/2018.
  */
 
+//Ref: http://mateoj.com/2015/10/06/creating-movies-app-retrofit-picasso-android/
 public class RecipesDetailAdapter extends RecyclerView.Adapter<RecipesDetailAdapter.RecipeDetailViewHolder> {
 
     final private RecipeStepClickListener rListener;
@@ -22,7 +23,7 @@ public class RecipesDetailAdapter extends RecyclerView.Adapter<RecipesDetailAdap
 
     //Interface for RecipeDetailActivity for clicking on Recipe Step Detail
     public interface RecipeStepClickListener {
-        void onRecipeStepDetailItemClick(Recipe selectedStepItemIndex);
+        void onRecipeStepDetailItemClick(List<Step> stepsOut, int itemSelectedIndex, String recipeName);
     }
 
     public RecipesDetailAdapter (RecipeStepClickListener stepOnClickListener) {
@@ -46,8 +47,7 @@ public class RecipesDetailAdapter extends RecyclerView.Adapter<RecipesDetailAdap
     public void onBindViewHolder(RecipeDetailViewHolder holder, int position) {
 
         holder.steptDescripCard.setText(stepsList.get(position).getId()
-                + ". "
-                + stepsList.get(position).getShortDescription());
+                + ". " + stepsList.get(position).getShortDescription());
     }
 
     @Override

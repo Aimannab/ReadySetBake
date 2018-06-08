@@ -29,7 +29,6 @@ import static com.example.android.readysetbake.MainActivity.ALL_RECIPES;
  * Created by Aiman Nabeel on 31/05/2018.
  */
 
-//Ref: https://github.com/nikosvaggalis/Udacity-Advanced-Developer-Nanodegree-Baking-App-2017/blob/master/app/src/main/java/com/example/android/recipe/ui/RecipeFragment.java
 public class RecipeFragment extends Fragment{
 
     public RecipeFragment() {

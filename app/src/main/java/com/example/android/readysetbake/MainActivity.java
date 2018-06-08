@@ -22,7 +22,6 @@ import android.support.v4.app.FragmentManager;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MainActivity extends AppCompatActivity implements RecipesAdapter.RecipeListItemClickListener{
     private RecyclerView rRecyclerView;
     private RecipesAdapter recipesAdapter;
