@@ -17,4 +17,28 @@
         android:id="@+id/recipe_step_detail_content"
         android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="50dp">
+
+        <Button
+            android:id="@+id/previousStep"
+            android:padding="40dp"
+            android:elevation="6dp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTintMode="src_over" />
+
+        <Button
+            android:id="@+id/nextStep"
+            android:padding="40dp"
+            android:layout_margin="10dp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:backgroundTintMode="src_over" />
+    </LinearLayout>
+
 </LinearLayout>

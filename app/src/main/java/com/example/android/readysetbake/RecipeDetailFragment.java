@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import org.jsoup.Jsoup;
+import butterknife.BindView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ import static com.example.android.readysetbake.MainActivity.SELECTED_RECIPES;
 //Displaying Data
 public class RecipeDetailFragment extends Fragment {
 
+    //@BindView(R.id.stepDescriptionCard)
     ArrayList<Recipe> recipeList;
     String recipeName;
 

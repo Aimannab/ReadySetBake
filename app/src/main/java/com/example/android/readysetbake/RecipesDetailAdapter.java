@@ -75,6 +75,7 @@ public class RecipesDetailAdapter extends RecyclerView.Adapter<RecipesDetailAdap
         @Override
         public void onClick(View view) {
 
+            //pendinggggggggggggg
         }
     }
 }

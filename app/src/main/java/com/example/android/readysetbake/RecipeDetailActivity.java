@@ -46,7 +46,14 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
                     .replace(R.id.recipe_fragment_container, detailFragment).addToBackStack(STACK_RECIPE_DETAIL)
                     .commit();
 
-            //phone-land code pending
+            //Replacing with RecipeStepDetailFragement
+            if(findViewById(R.id.recipe_detail_layout).getTag()!=null && findViewById(R.id.recipe_detail_layout).getTag().equals("tablet-land")) {
+                final RecipeStepDetailFragment stepDetailFragment = new RecipeStepDetailFragment();
+                stepDetailFragment.setArguments(recipeBundleSelected);
+                detailFragmentManager.beginTransaction()
+                        .replace(R.id.recipe_fragment_container2, detailFragment).addToBackStack(STACK_RECIPE_STEP_DETAIL)
+                        .commit();
+            }
 
         } else {
             recipeName = savedInstanceState.getString("Title");
