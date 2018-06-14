@@ -27,7 +27,7 @@ import static com.example.android.readysetbake.MainActivity.SELECTED_RECIPES;
 //Displaying Data
 public class RecipeDetailFragment extends Fragment {
 
-    //@BindView(R.id.stepDescriptionCard)
+    //@BindView(R.id.stepDescriptionCard) pending
     ArrayList<Recipe> recipeList;
     String recipeName;
 
