@@ -19,7 +19,6 @@ public class RecipesDetailAdapter extends RecyclerView.Adapter<RecipesDetailAdap
     final private RecipeStepClickListener rListener;
     List<Step> recipeStepList;
     private String recipeName;
-    List<Step> stepsList;
 
     //Interface for RecipeDetailActivity for clicking on Recipe Step Detail
     public interface RecipeStepClickListener {
@@ -46,13 +45,13 @@ public class RecipesDetailAdapter extends RecyclerView.Adapter<RecipesDetailAdap
     @Override
     public void onBindViewHolder(RecipeDetailViewHolder holder, int position) {
 
-        holder.steptDescripCard.setText(stepsList.get(position).getId()
-                + ". " + stepsList.get(position).getShortDescription());
+        holder.steptDescripCard.setText(recipeStepList.get(position).getId()
+                + ". " + recipeStepList.get(position).getShortDescription());
     }
 
     @Override
     public int getItemCount() {
-        return stepsList !=null ? stepsList.size():0 ;
+        return recipeStepList !=null ? recipeStepList.size():0 ;
     }
 
     public void recipeStepData (List<Recipe> recipeList, Context context) {

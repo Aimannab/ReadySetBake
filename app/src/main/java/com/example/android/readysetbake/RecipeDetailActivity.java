@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 ////Setting up layouts
-public class RecipeDetailActivity extends AppCompatActivity implements RecipesDetailAdapter.RecipeStepClickListener {
+public class RecipeDetailActivity extends AppCompatActivity implements RecipesDetailAdapter.RecipeStepClickListener, RecipeStepDetailFragment.RecipeStepClickListener {
 
     static String ALL_RECIPES="All_Recipes";
     static String SELECTED_RECIPES="Selected_Recipes";

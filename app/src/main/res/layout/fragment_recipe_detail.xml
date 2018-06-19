@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@android:style/Widget.Holo.ScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:fillViewport="false"
+    android:isScrollContainer="false"
+    android:scrollIndicators="top|bottom"
+    android:scrollbarAlwaysDrawVerticalTrack="false"
+    android:scrollbarStyle="insideInset">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:scrollbarStyle="insideInset"
-        style="@android:style/Widget.Holo.ScrollView"
-        android:clipToPadding="false"
-        android:scrollIndicators="top|bottom"
-        android:scrollbarAlwaysDrawVerticalTrack="false"
-        android:isScrollContainer="false"
-        android:fillViewport="false">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:textSize="16sp"
-            android:textColor="#E0E0E0"
+            android:layout_height="wrap_content">
+        <TextView
             android:id="@+id/recipe_detail_ingredients_text"
-            android:padding="15dp" />
-    </ScrollView>
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="15dp"
+            android:textColor="#E0E0E0"
+            android:textSize="16sp" />
+        </ScrollView>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_margin="15dp"
-        android:id="@+id/recipe_detail_recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"     />
-
-</android.support.constraint.ConstraintLayout>
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recipe_detail_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="15dp"
+            android:layout_weight="2" />
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -10,9 +10,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
+
+
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.android.readysetbake.MainActivity.SELECTED_INDEX;
 import static com.example.android.readysetbake.MainActivity.SELECTED_RECIPES;
@@ -28,9 +34,17 @@ public class RecipeStepDetailFragment extends Fragment {
     private ArrayList<Step> recipeSteps = new ArrayList<>();
     private int selectedIndex;
     String recipeName;
+    private RecipeStepClickListener clickListener;
+    //SimpleExoPlayer variables
+    private SimpleExoPlayer exoPlayer;
+    private SimpleExoPlayerView exoPlayerView;
 
     public RecipeStepDetailFragment() {
 
+    }
+
+    public interface RecipeStepClickListener {
+        void onRecipeStepDetailItemClick(List<Step> stepsOut, int itemSelectedIndex, String recipeName);
     }
 
     @Nullable
@@ -38,6 +52,8 @@ public class RecipeStepDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         recipeList = new ArrayList<>();
+
+        clickListener =(RecipeDetailActivity)getActivity();
 
         if(savedInstanceState != null) {
             recipeSteps = savedInstanceState.getParcelableArrayList(SELECTED_STEPS);
@@ -66,6 +82,10 @@ public class RecipeStepDetailFragment extends Fragment {
         recipeStepDetailTextview = (TextView) rootView.findViewById(R.id.recipe_step_detail_content);
         recipeStepDetailTextview.setText(recipeSteps.get(selectedIndex).getDescription());
         recipeStepDetailTextview.setVisibility(View.VISIBLE);
+
+        //Setting up ExoPlayer here
+        exoPlayerView = (SimpleExoPlayerView) rootView.findViewById(R.id.exoPlayerView);
+        exoPlayerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
 
         if (rootView.findViewWithTag("sw600dp-port-recipe_step_detail")!=null) {
             recipeName=((RecipeDetailActivity) getActivity()).recipeName;
