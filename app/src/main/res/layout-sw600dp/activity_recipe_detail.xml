@@ -2,7 +2,11 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent">
+    android:id="@+id/recipe_detail_layout"
+    android:tag="tablet-land"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/recipeToolbar"

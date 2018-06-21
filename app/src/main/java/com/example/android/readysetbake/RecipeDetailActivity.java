@@ -51,7 +51,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
                 final RecipeStepDetailFragment stepDetailFragment = new RecipeStepDetailFragment();
                 stepDetailFragment.setArguments(recipeBundleSelected);
                 detailFragmentManager.beginTransaction()
-                        .replace(R.id.recipe_fragment_container2, detailFragment).addToBackStack(STACK_RECIPE_STEP_DETAIL)
+                        .replace(R.id.recipe_fragment_container2, stepDetailFragment).addToBackStack(STACK_RECIPE_STEP_DETAIL)
                         .commit();
             }
 
@@ -71,7 +71,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getSupportFragmentManager();
-                if (findViewById(R.id.recipe_fragment_container) ==null) {
+                if (findViewById(R.id.recipe_fragment_container2) ==null) {
                     if (fragmentManager.getBackStackEntryCount()> 1) {
                         //Return to Recipe Detail screen
                         fragmentManager.popBackStack(STACK_RECIPE_DETAIL, 0);
@@ -87,12 +87,6 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
 
             }
         });
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("Title",recipeName);
     }
 
     //Enabling clickListener for RecipeStepDetailFragment here
@@ -121,5 +115,11 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
                     .replace(R.id.recipe_fragment_container, fragment).addToBackStack(STACK_RECIPE_STEP_DETAIL)
                     .commit();
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("Title",recipeName);
     }
 }
