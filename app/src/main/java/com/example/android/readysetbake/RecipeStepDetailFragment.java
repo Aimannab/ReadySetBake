@@ -50,7 +50,7 @@ public class RecipeStepDetailFragment extends Fragment {
     }
 
     public interface RecipeStepClickListener {
-        void onRecipeStepDetailItemClick(List<Step> stepsOut, int itemSelectedIndex, String recipeName);
+        void onRecipeStepDetailItemClick(List<Step> allSteps, int Index, String recipeName);
     }
 
     //Method initializePlayer to implement in onCreateView
