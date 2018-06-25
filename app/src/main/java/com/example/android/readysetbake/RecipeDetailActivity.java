@@ -47,7 +47,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
                     .commit();
 
             //Replacing with RecipeStepDetailFragement
-            if (findViewById(R.id.recipe_detail_layout).getTag()!=null && findViewById(R.id.recipe_detail_layout).getTag().equals("tablet-land")) {
+            if (findViewById(R.id.recipe_fragment_container2)!=null) {
                 final RecipeStepDetailFragment stepDetailFragment = new RecipeStepDetailFragment();
                 stepDetailFragment.setArguments(recipeBundleSelected);
                 detailFragmentManager.beginTransaction()
