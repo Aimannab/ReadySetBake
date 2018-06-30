@@ -142,12 +142,11 @@ public class RecipeStepDetailFragment extends Fragment {
 
         clickListener =(RecipeDetailActivity)getActivity();
 
+        //Correction test
         if(savedInstanceState != null) {
             recipeSteps = savedInstanceState.getParcelableArrayList(SELECTED_STEPS);
             selectedIndex = savedInstanceState.getInt(SELECTED_INDEX);
             recipeName = savedInstanceState.getString("Title");
-
-
         }
         else {
             recipeSteps =getArguments().getParcelableArrayList(SELECTED_STEPS);
@@ -155,14 +154,8 @@ public class RecipeStepDetailFragment extends Fragment {
                 recipeSteps =getArguments().getParcelableArrayList(SELECTED_STEPS);
                 selectedIndex=getArguments().getInt(SELECTED_INDEX);
                 recipeName=getArguments().getString("Title");
-            }
-            else {
-                recipeSteps =getArguments().getParcelableArrayList(SELECTED_RECIPES);
-                //casting List to ArrayList
-                recipeSteps=(ArrayList<Step>)recipeList.get(0).getSteps();
                 selectedIndex=0;
             }
-
         }
 
         View rootView = inflater.inflate(R.layout.fragment_recipe_step_detail, container, false);
