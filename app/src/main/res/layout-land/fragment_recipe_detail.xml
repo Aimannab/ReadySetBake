@@ -11,7 +11,6 @@
         android:layout_width="286dp"
         android:layout_height="wrap_content"
         android:scrollbarStyle="insideInset"
-        style="@android:style/Widget.Holo.ScrollView"
         android:clipToPadding="false"
         android:scrollIndicators="top|bottom"
         android:scrollbarAlwaysDrawVerticalTrack="false"
