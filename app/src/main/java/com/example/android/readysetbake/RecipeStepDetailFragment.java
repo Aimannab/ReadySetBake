@@ -33,6 +33,7 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 
 import com.google.android.exoplayer2.upstream.BandwidthMeter;
 import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.squareup.picasso.Picasso;
@@ -79,66 +80,13 @@ public class RecipeStepDetailFragment extends Fragment {
         void onRecipeStepDetailItemClick(List<Step> allSteps, int Index, String recipeName);
     }
 
-    //Method initializePlayer to implement in onCreateView
-    private void initializePlayer(Uri mediaUri) {
-
-        if(exoPlayer == null) {
-            TrackSelection.Factory videoTrackSelector = new AdaptiveVideoTrackSelection.Factory(bandwidthMeter);
-            DefaultTrackSelector trackSelector = new DefaultTrackSelector(mainHandler, videoTrackSelector);
-            LoadControl loadControl = new DefaultLoadControl();
-
-            //USING newSimpleInstance method here, method explanation as follows:
-            //public static SimpleExoPlayer newSimpleInstance(Context context, TrackSelector<?> trackSelector,
-            //        LoadControl loadControl) {
-            //    return newSimpleInstance(context, trackSelector, loadControl, null);
-            //}
-
-            /**
-             * Creates a {@link SimpleExoPlayer} instance. Must be called from a thread that has an associated
-             * {@link Looper}.
-             *
-             * @param context A {@link Context}.
-             * @param trackSelector The {@link TrackSelector} that will be used by the instance.
-             * @param loadControl The {@link LoadControl} that will be used by the instance.
-             * @param drmSessionManager An optional {@link DrmSessionManager}. May be null if the instance
-             *     will not be used for DRM protected playbacks.
-             */
-            exoPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector, loadControl);
-
-            exoPlayerView.setPlayer(exoPlayer);
-            String userAgent = Util.getUserAgent(getContext(), "ReadySetBake!");
-
-            //USING ExtractorMediaSource method here, method explanation as follows:
-            //public ExtractorMediaSource(Uri uri, DataSource.Factory dataSourceFactory,
-            //        ExtractorsFactory extractorsFactory, Handler eventHandler, EventListener eventListener)
-            /**
-             * @param uri The {@link Uri} of the media stream.
-             * @param dataSourceFactory A factory for {@link DataSource}s to read the media.
-             * @param extractorsFactory A factory for {@link Extractor}s to process the media stream. If the
-             *     possible formats are known, pass a factory that instantiates extractors for those formats.
-             *     Otherwise, pass a {@link DefaultExtractorsFactory} to use default extractors.
-             * @param minLoadableRetryCount The minimum number of times to retry if a loading error occurs.
-             * @param eventHandler A handler for events. May be null if delivery of events is not required.
-             * @param eventListener A listener of events. May be null if delivery of events is not required.
-             */
-            MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(getContext(), userAgent),
-                    new DefaultExtractorsFactory(), null, null);
-
-            exoPlayer.prepare(mediaSource);
-            exoPlayer.setPlayWhenReady(true);
-        }
-    }
-
-    //Method isInLandscapeMode to implement in onCreateView
-    public boolean isInLandscapeMode (Context context) {
-        return (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE);
-    }
-
-    //ONCREATEVIEW METHOD
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         recipeList = new ArrayList<>();
+
+        mainHandler = new Handler();
+        bandwidthMeter = new DefaultBandwidthMeter();
 
         clickListener =(RecipeDetailActivity)getActivity();
 
@@ -198,7 +146,7 @@ public class RecipeStepDetailFragment extends Fragment {
         }
         else {
             exoPlayer=null;
-            //exoPlayerView.setForeground(ContextCompat.getDrawable(getContext(), R.drawable.ic_visibility_off_white_36dp));
+            exoPlayerView.setForeground(ContextCompat.getDrawable(getContext(), R.drawable.ic_visibility_off_white_36dp_foregroundmethod));
             exoPlayerView.setLayoutParams(new LinearLayout.LayoutParams(300, 300));
         }
 
@@ -245,6 +193,61 @@ public class RecipeStepDetailFragment extends Fragment {
         currentState.putParcelableArrayList(SELECTED_STEPS,recipeSteps);
         currentState.putInt(SELECTED_INDEX,selectedIndex);
         currentState.putString("Title",recipeName);
+    }
+
+    //Method initializePlayer to implement in onCreateView
+    private void initializePlayer(Uri mediaUri) {
+
+        if(exoPlayer == null) {
+            TrackSelection.Factory videoTrackSelector = new AdaptiveVideoTrackSelection.Factory(bandwidthMeter);
+            DefaultTrackSelector trackSelector = new DefaultTrackSelector(mainHandler, videoTrackSelector);
+            LoadControl loadControl = new DefaultLoadControl();
+
+            //USING newSimpleInstance method here, method explanation as follows:
+            //public static SimpleExoPlayer newSimpleInstance(Context context, TrackSelector<?> trackSelector,
+            //        LoadControl loadControl) {
+            //    return newSimpleInstance(context, trackSelector, loadControl, null);
+            //}
+
+            /**
+             * Creates a {@link SimpleExoPlayer} instance. Must be called from a thread that has an associated
+             * {@link Looper}.
+             *
+             * @param context A {@link Context}.
+             * @param trackSelector The {@link TrackSelector} that will be used by the instance.
+             * @param loadControl The {@link LoadControl} that will be used by the instance.
+             * @param drmSessionManager An optional {@link DrmSessionManager}. May be null if the instance
+             *     will not be used for DRM protected playbacks.
+             */
+            exoPlayer = ExoPlayerFactory.newSimpleInstance(getContext(), trackSelector, loadControl);
+
+            exoPlayerView.setPlayer(exoPlayer);
+            String userAgent = Util.getUserAgent(getContext(), "ReadySetBake!");
+
+            //USING ExtractorMediaSource method here, method explanation as follows:
+            //public ExtractorMediaSource(Uri uri, DataSource.Factory dataSourceFactory,
+            //        ExtractorsFactory extractorsFactory, Handler eventHandler, EventListener eventListener)
+            /**
+             * @param uri The {@link Uri} of the media stream.
+             * @param dataSourceFactory A factory for {@link DataSource}s to read the media.
+             * @param extractorsFactory A factory for {@link Extractor}s to process the media stream. If the
+             *     possible formats are known, pass a factory that instantiates extractors for those formats.
+             *     Otherwise, pass a {@link DefaultExtractorsFactory} to use default extractors.
+             * @param minLoadableRetryCount The minimum number of times to retry if a loading error occurs.
+             * @param eventHandler A handler for events. May be null if delivery of events is not required.
+             * @param eventListener A listener of events. May be null if delivery of events is not required.
+             */
+            MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(getContext(), userAgent),
+                    new DefaultExtractorsFactory(), null, null);
+
+            exoPlayer.prepare(mediaSource);
+            exoPlayer.setPlayWhenReady(true);
+        }
+    }
+
+    //Method isInLandscapeMode to implement in onCreateView
+    public boolean isInLandscapeMode (Context context) {
+        return (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE);
     }
 
     //Called when the fragment is no longer attached to its activity. This is called after onDestroy(),
