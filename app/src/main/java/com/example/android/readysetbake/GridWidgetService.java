@@ -59,7 +59,7 @@ public class GridWidgetService extends RemoteViewsService {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_gridview_item);
             views.setTextViewText(R.id.widget_gridview_item, remoteIngredientsList.get(position));
 
-            //Setting up FillIn Intent here
+            //Setting up FillIn Intent here for the gridview - To fill in the PendingIntent Template
             Intent intent = new Intent();
             views.setOnClickFillInIntent(R.id.widget_gridview, intent);
             return views;
