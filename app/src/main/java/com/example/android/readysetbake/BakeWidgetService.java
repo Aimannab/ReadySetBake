@@ -13,13 +13,14 @@ import java.util.ArrayList;
  * Created by Aiman Nabeel on 28/06/2018.
  */
 
+//Using this class in RecipeDetailFragment class
 public class BakeWidgetService extends IntentService{
 
     public static final String ACTION_BAKING_INGREDIENTS =
-            "com.example.android.readysetbake.action_baking_ingredients";
+            "ACTION_BAKING_INGREDIENTS";
 
-    public BakeWidgetService(String updateBakeService) {
-        super(updateBakeService);
+    public BakeWidgetService() {
+        super("UpdateBakingService");
     }
 
     public static void startBakingIngredientsService(Context context, ArrayList<String> ingredientsList) {
@@ -29,7 +30,7 @@ public class BakeWidgetService extends IntentService{
     }
 
     @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
+    protected void onHandleIntent(Intent intent) {
         if (intent != null) {
             ArrayList<String> ingredientsList = intent.getExtras().getStringArrayList(ACTION_BAKING_INGREDIENTS);
                 handleActionUpdateBakingIngredientsWidget(ingredientsList);

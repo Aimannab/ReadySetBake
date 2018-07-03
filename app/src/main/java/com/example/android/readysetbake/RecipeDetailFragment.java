@@ -82,7 +82,7 @@ public class RecipeDetailFragment extends Fragment {
         recipeDetailAdapter.recipeStepData(recipeList,getContext());
 
         //update widget
-        //UpdateBakingService.startBakingService(getContext(),recipeIngredientsForWidgets);
+        BakeWidgetService.startBakingIngredientsService(getContext(), recipeIngredientsForWidgets);
 
         return rootView;
     }
