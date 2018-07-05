@@ -87,6 +87,15 @@ public class ReadySetBakeWidgetProvider extends AppWidgetProvider {
 
         final String action = intent.getAction();
 
+        //Ref: https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#ACTION_APPWIDGET_UPDATE
+        //Sent when it is time to update your AppWidget.
+        //This may be sent in response to a new instance for this AppWidget provider having been instantiated, the requested update interval having lapsed, or the system booting.
+
+        //The data your app widget contains can be updated in two ways:
+        //The widget can update itself at regular intervals. You can define the interval in the widget's provider-info file.
+        //The widget's associated app can request a widget update explicitly.
+        //In both these cases the app widget manager sends a broadcast intent with the action ACTION_APPWIDGET_UPDATE.
+        // Your app widget-provider class receives that intent, and calls the onUpdate() method.
         if(action.equals("android.appwidget.action.APPWIDGET_UPDATE2")) {
             ingredientsList = intent.getExtras().getStringArrayList(ACTION_BAKING_INGREDIENTS);
             //Triggers a data refresh in the widget
