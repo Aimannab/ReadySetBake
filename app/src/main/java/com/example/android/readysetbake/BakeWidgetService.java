@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class BakeWidgetService extends IntentService{
 
     public static String ACTION_BAKING_INGREDIENTS =
-            "ACTION_BAKING_INGREDIENTS";
+            "FROM_ACTIVITY_INGREDIENTS_LIST";
 
     public BakeWidgetService() {
         super("UpdateBakingService");
