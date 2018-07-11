@@ -16,7 +16,7 @@ import java.util.ArrayList;
 //Using this class in RecipeDetailFragment class
 public class BakeWidgetService extends IntentService{
 
-    public static final String ACTION_BAKING_INGREDIENTS =
+    public static String ACTION_BAKING_INGREDIENTS =
             "ACTION_BAKING_INGREDIENTS";
 
     public BakeWidgetService() {

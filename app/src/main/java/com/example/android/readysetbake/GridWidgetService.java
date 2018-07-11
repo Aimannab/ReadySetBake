@@ -15,6 +15,7 @@ import static com.example.android.readysetbake.ReadySetBakeWidgetProvider.ingred
  */
 public class GridWidgetService extends RemoteViewsService {
 
+    //Ingredients list for remote view
     List<String> remoteIngredientsList;
 
     @Override
@@ -60,8 +61,8 @@ public class GridWidgetService extends RemoteViewsService {
             views.setTextViewText(R.id.widget_gridview_item, remoteIngredientsList.get(position));
 
             //Setting up FillIn Intent here for the gridview - To fill in the PendingIntent Template
-            Intent intent = new Intent();
-            views.setOnClickFillInIntent(R.id.widget_gridview, intent);
+            Intent fillInIntent = new Intent();
+            views.setOnClickFillInIntent(R.id.widget_gridview_item, fillInIntent);
             return views;
         }
 
@@ -82,7 +83,7 @@ public class GridWidgetService extends RemoteViewsService {
 
         @Override
         public boolean hasStableIds() {
-            return false;
+            return true;
         }
     }
 
