@@ -29,6 +29,7 @@ public class SimpleIdlingResource implements IdlingResource{
     private volatile ResourceCallback mCallback;
 
     // Idleness is controlled with this boolean.
+    //AtomicBooleans are used when multiple threads need to check and change the boolean.
     private AtomicBoolean mIsIdleNow = new AtomicBoolean(true);
 
     @Override
