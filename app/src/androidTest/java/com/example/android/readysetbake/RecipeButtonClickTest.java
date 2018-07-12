@@ -1,5 +1,6 @@
 package com.example.android.readysetbake;
 
+import android.support.test.espresso.intent.rule.IntentsTestRule;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -25,7 +26,7 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.hasCom
 public class RecipeButtonClickTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
+    public IntentsTestRule<MainActivity> mActivityTestRule = new IntentsTestRule<>(MainActivity.class);
 
     @Test
     public void clickRecipeButton_opensRecipeDetailActivity() {
