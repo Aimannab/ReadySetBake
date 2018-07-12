@@ -51,6 +51,11 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:8.8.1"
     compile "com.google.android.exoplayer:exoplayer:r2.0.4"
 
+    //Expresso imports
+    androidTestCompile 'com.android.support:support-annotations:22.+'
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2'
+    testCompile 'com.android.support.test:rules:0.5'
+    testCompile 'com.android.support.test:runner:0.5'
 }
 
 configurations.all {
