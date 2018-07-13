@@ -102,7 +102,7 @@ public class RecipeStepDetailFragment extends Fragment {
                 recipeSteps =getArguments().getParcelableArrayList(SELECTED_STEPS);
                 selectedIndex=getArguments().getInt(SELECTED_INDEX);
                 recipeName=getArguments().getString("Title");
-                selectedIndex=0;
+                //selectedIndex=0;
             }
         }
 
