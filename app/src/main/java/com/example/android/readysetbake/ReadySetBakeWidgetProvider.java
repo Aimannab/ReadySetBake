@@ -84,7 +84,7 @@ public class ReadySetBakeWidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         //Setting ingredients list in the widget
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-        int[] appWidetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, ReadySetBakeWidgetProvider.class));
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, ReadySetBakeWidgetProvider.class));
 
         final String action = intent.getAction();
 
@@ -100,11 +100,14 @@ public class ReadySetBakeWidgetProvider extends AppWidgetProvider {
         if(action.equals("android.appwidget.action.APPWIDGET_UPDATE2")) {
             ingredientsList = intent.getExtras().getStringArrayList(ACTION_BAKING_INGREDIENTS);
             //Triggers a data refresh in the widget
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidetIds, R.id.widget_gridview);
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_gridview);
 
             //Updating all widgets
-            ReadySetBakeWidgetProvider.onUpdateBakingWidgets(context, appWidgetManager, appWidetIds);
+            ReadySetBakeWidgetProvider.onUpdateBakingWidgets(context, appWidgetManager, appWidgetIds);
+            onUpdate(context,appWidgetManager,appWidgetIds);
+
             super.onReceive(context, intent);
+
         }
     }
 }
