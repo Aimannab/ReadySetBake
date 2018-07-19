@@ -7,6 +7,7 @@ import android.os.Parcelable;
  * Created by Aiman Nabeel on 18/07/2018.
  */
 
+//This class is not implemented yet
 public class WidgetObject implements Parcelable {
 
     private String widgetString;
