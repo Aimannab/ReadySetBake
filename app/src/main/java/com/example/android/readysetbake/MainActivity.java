@@ -23,6 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements RecipesAdapter.RecipeListItemClickListener{
+
+    public static final String SHARED_PREFS_KEY = "SHARED_PREFS_KEY";
+
     private RecyclerView rRecyclerView;
     private RecipesAdapter recipesAdapter;
     boolean recipeTwoPane;

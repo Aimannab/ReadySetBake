@@ -42,8 +42,8 @@ public class BakeWidgetService extends IntentService{
     //Sent when it is time to update your AppWidget.
     //This may be sent in response to a new instance for this AppWidget provider having been instantiated, the requested update interval having lapsed, or the system booting.
     private void handleActionUpdateBakingIngredientsWidget(ArrayList<String> ingredientsList) {
-        Intent intent = new Intent("android.appwidget.action.APPWIDGET_UPDATE2");
-        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE2");
+        Intent intent = new Intent(this, ReadySetBakeWidgetProvider.class);
+        intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
         intent.putExtra(ACTION_BAKING_INGREDIENTS, ingredientsList);
         sendBroadcast(intent);
     }

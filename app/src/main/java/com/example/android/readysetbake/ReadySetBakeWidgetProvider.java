@@ -17,16 +17,6 @@ import static com.example.android.readysetbake.BakeWidgetService.ACTION_BAKING_I
  * Created by Aiman Nabeel on 28/06/2018.
  */
 
-/**************************************************************************************************************
- *    This code has been adapted from the following source:
- *    Title: Udacity-Advanced-Developer-Nanodegree-Baking-App-2017
- *    Author: nikosvaggalis
- *    Date: 2017
- *    Code version: N/A
- *    Availability: https://github.com/nikosvaggalis/Udacity-Advanced-Developer-Nanodegree-Baking-App-2017.git
- **************************************************************************************************************/
-
-
 /**
  * Implementation of App Widget functionality.
  */
@@ -43,7 +33,7 @@ public class ReadySetBakeWidgetProvider extends AppWidgetProvider {
         //views.setTextViewText(R.id.appwidget_text, widgetText);
 
         //Creating Pending Intent for MainActivity
-        Intent intent = new Intent(context, RecipeDetailActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
 
         //Adding category
         intent.addCategory(Intent.ACTION_MAIN);
@@ -93,32 +83,20 @@ public class ReadySetBakeWidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, ReadySetBakeWidgetProvider.class));
 
-        final String action = intent.getAction();
-
-        //Ref: https://developer.android.com/reference/android/appwidget/AppWidgetManager.html#ACTION_APPWIDGET_UPDATE
-        //Sent when it is time to update your AppWidget.
-        //This may be sent in response to a new instance for this AppWidget provider having been instantiated, the requested update interval having lapsed, or the system booting.
-
-        //The data your app widget contains can be updated in two ways:
-        //The widget can update itself at regular intervals. You can define the interval in the widget's provider-info file.
-        //The widget's associated app can request a widget update explicitly.
-        //In both these cases the app widget manager sends a broadcast intent with the action ACTION_APPWIDGET_UPDATE.
-        // Your app widget-provider class receives that intent, and calls the onUpdate() method.
-        if(action.equals("android.appwidget.action.APPWIDGET_UPDATE2")) {
-            //Setting ingredients list in the widget
-
+        //Setting ingredients list in the widget
             ingredientsList = intent.getExtras().getStringArrayList(ACTION_BAKING_INGREDIENTS);
+
             //Triggers a data refresh in the widget
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_gridview);
 
             //Updating all widgets
-            ReadySetBakeWidgetProvider.onUpdateBakingWidgets(context, appWidgetManager, appWidgetIds);
-            onUpdate(context,appWidgetManager,appWidgetIds);
-        }
+            //ReadySetBakeWidgetProvider.onUpdateBakingWidgets(context, appWidgetManager, appWidgetIds);
+
+        onUpdate(context,appWidgetManager,appWidgetIds);
+
     }
 }
 

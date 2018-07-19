@@ -37,7 +37,6 @@
             android:icon="@drawable/icon_36dp">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE2" />
             </intent-filter>
 
             <meta-data

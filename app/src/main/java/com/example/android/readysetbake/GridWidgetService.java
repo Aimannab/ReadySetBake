@@ -3,9 +3,15 @@ package com.example.android.readysetbake;
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.android.readysetbake.ReadySetBakeWidgetProvider.ingredientsList;
@@ -30,6 +36,7 @@ public class GridWidgetService extends RemoteViewsService {
         //We have enclosed this class in another class so we can use the following method with our own customized parameters: added Intent intent parameter
         public GridRemoteViewsFactory(Context applicationContext, Intent intent) {
             context = applicationContext;
+
         }
 
         @Override
@@ -39,7 +46,13 @@ public class GridWidgetService extends RemoteViewsService {
 
         @Override
         public void onDataSetChanged() {
-            remoteIngredientsList = ingredientsList;
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            String json = preferences.getString(MainActivity.SHARED_PREFS_KEY, "");
+            if (!json.equals("")) {
+                Gson gson = new Gson();
+                ingredientsList = gson.fromJson(json, new TypeToken<ArrayList<String>>() {
+                }.getType());
+            }
 
         }
 
