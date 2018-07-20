@@ -1,22 +1,22 @@
 package com.example.android.readysetbake;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.support.v7.app.AppCompatActivity;
+
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -30,6 +30,9 @@ import static com.example.android.readysetbake.MainActivity.ALL_RECIPES;
  */
 
 public class RecipeFragment extends Fragment{
+
+    public static final String SHARED_PREFS_KEY = "SHARED_PREFS_KEY";
+
 
     public RecipeFragment() {
 
@@ -80,6 +83,15 @@ public class RecipeFragment extends Fragment{
                     idlingResource.setIdleState(true);
                 }
 
+                //Saving Data for Shared Preferences
+                ArrayList<String> recipeName = new ArrayList<>();
+                recipeName.add(recipes.get(0).getName());
+                Gson gson = new Gson();
+                String json = gson.toJson(recipeName);
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString(SHARED_PREFS_KEY, json).commit();
+
             }
 
             @Override
@@ -88,8 +100,8 @@ public class RecipeFragment extends Fragment{
             }
         });
 
-
         return rootView;
     }
+
 }
 

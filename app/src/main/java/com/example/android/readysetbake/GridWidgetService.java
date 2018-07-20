@@ -21,9 +21,6 @@ import static com.example.android.readysetbake.ReadySetBakeWidgetProvider.ingred
  */
 public class GridWidgetService extends RemoteViewsService {
 
-    //Ingredients list for remote view
-    List<String> remoteIngredientsList;
-
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
         return new GridRemoteViewsFactory(this.getApplicationContext(), intent);
@@ -36,7 +33,6 @@ public class GridWidgetService extends RemoteViewsService {
         //We have enclosed this class in another class so we can use the following method with our own customized parameters: added Intent intent parameter
         public GridRemoteViewsFactory(Context applicationContext, Intent intent) {
             context = applicationContext;
-
         }
 
         @Override
@@ -46,6 +42,7 @@ public class GridWidgetService extends RemoteViewsService {
 
         @Override
         public void onDataSetChanged() {
+            //Retrieving Data
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             String json = preferences.getString(MainActivity.SHARED_PREFS_KEY, "");
             if (!json.equals("")) {
@@ -63,7 +60,7 @@ public class GridWidgetService extends RemoteViewsService {
 
         @Override
         public int getCount() {
-            return remoteIngredientsList.size();
+            return ingredientsList.size();
         }
 
         //Setting widget_gridview_item here
@@ -71,7 +68,7 @@ public class GridWidgetService extends RemoteViewsService {
         public RemoteViews getViewAt(int position) {
 
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_gridview_item);
-            views.setTextViewText(R.id.widget_gridview_item, remoteIngredientsList.get(position));
+            views.setTextViewText(R.id.widget_gridview_item, ingredientsList.get(position));
 
             //Setting up FillIn Intent here for the gridview - To fill in the PendingIntent Template
             Intent fillInIntent = new Intent();
