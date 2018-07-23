@@ -34,7 +34,7 @@ public class RecipeDetailFragment extends Fragment {
     //@BindView(R.id.stepDescriptionCard) pending
     ArrayList<Recipe> recipeList;
     String recipeName;
-    public static final String SHARED_PREFS_KEY = "SHARED_PREFS_KEY";
+    public static final String SHARED_PREFS_KEY_INGRED = "SHARED_PREFS_KEY";
 
     public RecipeDetailFragment() {
 
@@ -47,6 +47,7 @@ public class RecipeDetailFragment extends Fragment {
         RecyclerView recipeRecyclerView;
         final TextView ingredientsTextView;
         recipeList = new ArrayList<>();
+        String ingredientsList;
 
         if(savedInstanceState != null) {
             recipeList = savedInstanceState.getParcelableArrayList(SELECTED_RECIPES);
@@ -74,14 +75,14 @@ public class RecipeDetailFragment extends Fragment {
             recipeIngredientsForWidgets.add(a.getIngredient()+"\n"+
                     "Quantity: "+a.getQuantity().toString()+"\n"+
                     "Measure: "+a.getMeasure()+"\n");
-        });
 
-        //Saving Data for Shared Preferences for Widget
-        Gson gson = new Gson();
-        String json = gson.toJson(ingredients);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(SHARED_PREFS_KEY, json).commit();
+            //Saving Data for Shared Preferences for Widget
+            Gson gson = new Gson();
+            String json = gson.toJson(recipeIngredientsForWidgets);
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString(SHARED_PREFS_KEY_INGRED, json).commit();
+        });
 
         //Setting up Layout Manager here
         recipeRecyclerView=(RecyclerView)rootView.findViewById(R.id.recipe_detail_recycler);

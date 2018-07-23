@@ -1,14 +1,17 @@
 package com.example.android.readysetbake;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.support.v4.app.FragmentManager;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +33,8 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
 
     private ArrayList<Recipe> recipeList;
     String recipeName;
+    TextView ingredientsTitle;
+    TextView instructionsTitle;
 
     @Nullable
     private SimpleIdlingResource mIdlingResource;
@@ -46,6 +51,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
         return mIdlingResource;
     }
 
+    @SuppressLint("ResourceAsColor")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
@@ -57,6 +63,10 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
             recipeList = recipeBundleSelected.getParcelableArrayList(SELECTED_RECIPES);
             recipeName = recipeList.get(0).getName();
 
+            ingredientsTitle = (TextView) findViewById(R.id.ingredientsTitle);
+            ingredientsTitle.setBackgroundColor(R.color.grey);
+            ingredientsTitle.setText("Ingredients");
+
             //Setting up RecipeDetailFragment by replacing it with recipe_fragment_container i.e. activity_recipe_detail.xml
             final RecipeDetailFragment detailFragment = new RecipeDetailFragment();
             detailFragment.setArguments(recipeBundleSelected);
@@ -64,6 +74,10 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
             detailFragmentManager.beginTransaction()
                     .replace(R.id.recipe_fragment_container, detailFragment).addToBackStack(STACK_RECIPE_DETAIL)
                     .commit();
+
+            ingredientsTitle = (TextView) findViewById(R.id.instructionsTitle);
+            ingredientsTitle.setBackgroundColor(R.color.grey);
+            ingredientsTitle.setText("Instuctions");
 
             //Replacing with RecipeStepDetailFragement
             if (findViewById(R.id.recipe_detail_layout).getTag()!=null && findViewById(R.id.recipe_detail_layout).getTag().equals("tablet-land")){

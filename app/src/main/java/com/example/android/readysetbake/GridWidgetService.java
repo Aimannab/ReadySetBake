@@ -21,6 +21,8 @@ import static com.example.android.readysetbake.ReadySetBakeWidgetProvider.ingred
  */
 public class GridWidgetService extends RemoteViewsService {
 
+    ArrayList<String> recipeIngredientsForWidgets= new ArrayList<>();
+
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
         return new GridRemoteViewsFactory(this.getApplicationContext(), intent);
@@ -42,12 +44,21 @@ public class GridWidgetService extends RemoteViewsService {
 
         @Override
         public void onDataSetChanged() {
-            //Retrieving Data
+            //Retrieving Data for RecipeName
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             String json = preferences.getString(MainActivity.SHARED_PREFS_KEY, "");
             if (!json.equals("")) {
                 Gson gson = new Gson();
                 ingredientsList = gson.fromJson(json, new TypeToken<ArrayList<String>>() {
+                }.getType());
+            }
+
+            //Retrieving Data for Ingredients List
+            SharedPreferences preferences2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            String json2 = preferences.getString(RecipeDetailFragment.SHARED_PREFS_KEY_INGRED, "");
+            if (!json2.equals("")) {
+                Gson gson = new Gson();
+                recipeIngredientsForWidgets = gson.fromJson(json, new TypeToken<ArrayList<String>>() {
                 }.getType());
             }
 
