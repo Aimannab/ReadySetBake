@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -83,9 +84,10 @@ public class RecipeFragment extends Fragment{
                     idlingResource.setIdleState(true);
                 }
 
-                //Saving Data for Shared Preferences
+                //Saving Data for Shared Preferences for Widget
                 ArrayList<String> recipeName = new ArrayList<>();
                 recipeName.add(recipes.get(0).getName());
+
                 Gson gson = new Gson();
                 String json = gson.toJson(recipeName);
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());

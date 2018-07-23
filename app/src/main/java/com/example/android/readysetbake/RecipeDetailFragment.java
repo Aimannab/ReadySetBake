@@ -1,12 +1,16 @@
 package com.example.android.readysetbake;
 
 import android.annotation.TargetApi;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import com.example.android.readysetbake.RecipesDetailAdapter;
+import com.google.gson.Gson;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +34,7 @@ public class RecipeDetailFragment extends Fragment {
     //@BindView(R.id.stepDescriptionCard) pending
     ArrayList<Recipe> recipeList;
     String recipeName;
+    public static final String SHARED_PREFS_KEY = "SHARED_PREFS_KEY";
 
     public RecipeDetailFragment() {
 
@@ -70,6 +75,12 @@ public class RecipeDetailFragment extends Fragment {
                     "Quantity: "+a.getQuantity().toString()+"\n"+
                     "Measure: "+a.getMeasure()+"\n");
         });
+
+        Gson gson = new Gson();
+        String json = gson.toJson(ingredients);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(SHARED_PREFS_KEY, json).commit();
 
         //Setting up Layout Manager here
         recipeRecyclerView=(RecyclerView)rootView.findViewById(R.id.recipe_detail_recycler);

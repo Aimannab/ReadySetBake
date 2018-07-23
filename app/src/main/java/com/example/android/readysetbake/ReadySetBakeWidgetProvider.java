@@ -10,9 +10,6 @@ import android.widget.RemoteViews;
 
 import java.util.ArrayList;
 
-import static com.example.android.readysetbake.BakeWidgetService.ACTION_BAKING_INGREDIENTS;
-
-
 /**
  * Created by Aiman Nabeel on 28/06/2018.
  */
@@ -85,9 +82,6 @@ public class ReadySetBakeWidgetProvider extends AppWidgetProvider {
         super.onReceive(context, intent);
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, ReadySetBakeWidgetProvider.class));
-
-        //Setting ingredients list in the widget
-            ingredientsList = intent.getExtras().getStringArrayList(ACTION_BAKING_INGREDIENTS);
 
             //Triggers a data refresh in the widget
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_gridview);
