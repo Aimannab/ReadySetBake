@@ -33,7 +33,7 @@ public class RecipeDetailFragment extends Fragment {
 
     //@BindView(R.id.stepDescriptionCard) pending
     ArrayList<Recipe> recipeList;
-    String recipeName;
+    static String recipeName;
     public static final String SHARED_PREFS_KEY_INGRED = "SHARED_PREFS_KEY";
 
     public RecipeDetailFragment() {

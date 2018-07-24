@@ -6,9 +6,12 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.Toolbar;
 import android.widget.RemoteViews;
 
 import java.util.ArrayList;
+
+import static com.example.android.readysetbake.RecipeDetailFragment.recipeName;
 
 /**
  * Created by Aiman Nabeel on 28/06/2018.
@@ -24,10 +27,9 @@ public class ReadySetBakeWidgetProvider extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        //CharSequence widgetText = context.getString(R.string.appwidget_text);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_gridview);
-        //views.setTextViewText(R.id.appwidget_text, widgetText);
+        views.setTextViewText(R.id.recipeNameText,recipeName);
 
         //Creating Pending Intent for MainActivity
         Intent intent = new Intent(context, MainActivity.class);
@@ -85,9 +87,6 @@ public class ReadySetBakeWidgetProvider extends AppWidgetProvider {
 
             //Triggers a data refresh in the widget
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_gridview);
-
-            //Updating all widgets
-            //ReadySetBakeWidgetProvider.onUpdateBakingWidgets(context, appWidgetManager, appWidgetIds);
 
         onUpdate(context,appWidgetManager,appWidgetIds);
 

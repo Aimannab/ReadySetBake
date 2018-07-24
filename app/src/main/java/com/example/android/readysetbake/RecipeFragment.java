@@ -84,15 +84,18 @@ public class RecipeFragment extends Fragment{
                     idlingResource.setIdleState(true);
                 }
 
-                //Saving Data for Shared Preferences for Widget
-                ArrayList<String> recipeName = new ArrayList<>();
-                recipeName.add(recipes.get(0).getName());
+                    //Saving Data for Shared Preferences for Widget
+                    ArrayList<String> recipeName = new ArrayList<>();
+                    recipeName.add(recipes.get(0).getName());
+                    recipeName.add(recipes.get(1).getName());
+                    recipeName.add(recipes.get(2).getName());
+                    recipeName.add(recipes.get(3).getName());
 
-                Gson gson = new Gson();
-                String json = gson.toJson(recipeName);
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                SharedPreferences.Editor editor = prefs.edit();
-                editor.putString(SHARED_PREFS_KEY, json).commit();
+                    Gson gson = new Gson();
+                    String json = gson.toJson(recipeName);
+                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putString(SHARED_PREFS_KEY, json).commit();
 
             }
 

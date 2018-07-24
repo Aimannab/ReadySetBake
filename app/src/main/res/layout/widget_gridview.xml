@@ -3,6 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/recipeNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <GridView
         android:id="@+id/widget_gridview"
         android:layout_width="match_parent"
@@ -13,6 +18,5 @@
         android:horizontalSpacing="5dp"
         android:verticalSpacing="5dp"
         />
-
 
 </FrameLayout>
