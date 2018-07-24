@@ -8,18 +8,24 @@
     <RelativeLayout
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        card_view:cardCornerRadius="4dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/videoicon" />
 
         <TextView
             android:id="@+id/stepDescriptionCard"
+            android:paddingLeft="40dp"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:textColor="@android:color/black"
-            android:textSize="14sp"
-            android:layout_centerHorizontal="false"
-            android:layout_centerVertical="true" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

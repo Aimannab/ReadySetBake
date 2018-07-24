@@ -42,7 +42,8 @@
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:backgroundTintMode="src_over" />
+            android:backgroundTintMode="src_over"
+            android:background="@drawable/back"/>
 
         <Button
             android:id="@+id/nextStep"
@@ -50,7 +51,8 @@
             android:layout_margin="10dp"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:backgroundTintMode="src_over" />
+            android:backgroundTintMode="src_over"
+            android:background="@drawable/next"/>
     </LinearLayout>
 
 

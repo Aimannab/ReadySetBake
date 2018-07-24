@@ -4,7 +4,7 @@
     android:initialLayout="@layout/ready_set_bake_widget_provider"
     android:minHeight="100dp"
     android:minWidth="100dp"
-    android:previewImage="@drawable/cupcake"
+    android:previewImage="@drawable/backgroundthings"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen"></appwidget-provider>
