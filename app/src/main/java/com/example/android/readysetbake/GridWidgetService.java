@@ -53,7 +53,6 @@ public class GridWidgetService extends RemoteViewsService {
                 }.getType());
             }
 
-            //Retrieving Data for Ingredients List
             SharedPreferences preferences2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             String json2 = preferences.getString(RecipeDetailFragment.SHARED_PREFS_KEY_INGRED, "");
             if (!json2.equals("")) {

@@ -33,8 +33,6 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
 
     private ArrayList<Recipe> recipeList;
     String recipeName;
-    TextView ingredientsTitle;
-    TextView instructionsTitle;
 
     @Nullable
     private SimpleIdlingResource mIdlingResource;
@@ -63,10 +61,6 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
             recipeList = recipeBundleSelected.getParcelableArrayList(SELECTED_RECIPES);
             recipeName = recipeList.get(0).getName();
 
-            ingredientsTitle = (TextView) findViewById(R.id.ingredientsTitle);
-            ingredientsTitle.setBackgroundColor(R.color.grey);
-            ingredientsTitle.setText("Ingredients");
-
             //Setting up RecipeDetailFragment by replacing it with recipe_fragment_container i.e. activity_recipe_detail.xml
             final RecipeDetailFragment detailFragment = new RecipeDetailFragment();
             detailFragment.setArguments(recipeBundleSelected);
@@ -74,10 +68,6 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
             detailFragmentManager.beginTransaction()
                     .replace(R.id.recipe_fragment_container, detailFragment).addToBackStack(STACK_RECIPE_DETAIL)
                     .commit();
-
-            ingredientsTitle = (TextView) findViewById(R.id.instructionsTitle);
-            ingredientsTitle.setBackgroundColor(R.color.grey);
-            ingredientsTitle.setText("Instuctions");
 
             //Replacing with RecipeStepDetailFragement
             if (findViewById(R.id.recipe_detail_layout).getTag()!=null && findViewById(R.id.recipe_detail_layout).getTag().equals("tablet-land")){

@@ -33,8 +33,7 @@
         <service android:name=".GridWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <receiver android:name=".ReadySetBakeWidgetProvider"
-            android:icon="@drawable/icon_36dp">
+        <receiver android:name=".ReadySetBakeWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

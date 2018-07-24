@@ -11,8 +11,6 @@ import android.widget.RemoteViews;
 
 import java.util.ArrayList;
 
-import static com.example.android.readysetbake.RecipeDetailFragment.recipeName;
-
 /**
  * Created by Aiman Nabeel on 28/06/2018.
  */
@@ -27,9 +25,9 @@ public class ReadySetBakeWidgetProvider extends AppWidgetProvider {
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
-        // Construct the RemoteViews object
+        // Constructing the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_gridview);
-        views.setTextViewText(R.id.recipeNameText,recipeName);
+        //views.setTextViewText(R.id.recipeNameText,recipeName);
 
         //Creating Pending Intent for MainActivity
         Intent intent = new Intent(context, MainActivity.class);

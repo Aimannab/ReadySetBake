@@ -86,6 +86,7 @@ public class RecipeFragment extends Fragment{
 
                     //Saving Data for Shared Preferences for Widget
                     ArrayList<String> recipeName = new ArrayList<>();
+                    recipeName.add("ReadySetBake!");
                     recipeName.add(recipes.get(0).getName());
                     recipeName.add(recipes.get(1).getName());
                     recipeName.add(recipes.get(2).getName());

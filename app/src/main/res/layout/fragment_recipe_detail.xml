@@ -10,6 +10,15 @@
         android:fitsSystemWindows="true"
         android:padding="16dp">
 
+        <TextView
+            android:id="@+id/ingredientsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,6 +38,15 @@
             android:textColor="#000000"
             android:textSize="16sp" />
         </ScrollView>
+
+        <TextView
+            android:id="@+id/instructionsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recipe_detail_recycler"

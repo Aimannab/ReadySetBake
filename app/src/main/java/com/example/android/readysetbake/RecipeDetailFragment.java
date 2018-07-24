@@ -1,5 +1,6 @@
 package com.example.android.readysetbake;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -33,21 +34,26 @@ public class RecipeDetailFragment extends Fragment {
 
     //@BindView(R.id.stepDescriptionCard) pending
     ArrayList<Recipe> recipeList;
-    static String recipeName;
+    String recipeName;
     public static final String SHARED_PREFS_KEY_INGRED = "SHARED_PREFS_KEY";
 
     public RecipeDetailFragment() {
 
     }
 
+    @SuppressLint("ResourceAsColor")
     @TargetApi(Build.VERSION_CODES.N)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RecyclerView recipeRecyclerView;
         final TextView ingredientsTextView;
+        final TextView instructionsTextView;
         recipeList = new ArrayList<>();
         String ingredientsList;
+
+        TextView ingredientsTitle;
+        TextView instructionsTitle;
 
         if(savedInstanceState != null) {
             recipeList = savedInstanceState.getParcelableArrayList(SELECTED_RECIPES);
@@ -64,6 +70,13 @@ public class RecipeDetailFragment extends Fragment {
         ingredientsTextView = (TextView) rootView.findViewById(R.id.recipe_detail_ingredients_text);
 
         ArrayList<String> recipeIngredientsForWidgets= new ArrayList<>();
+        recipeIngredientsForWidgets.add("ReadySetBake! - " + recipeName);
+        //recipeIngredientsForWidgets.add(recipeName);
+
+        //Setting "Ingredients" tab here
+        ingredientsTitle = (TextView) rootView.findViewById(R.id.ingredientsTitle);
+        ingredientsTitle.setBackgroundColor(R.color.grey);
+        ingredientsTitle.append("Ingredients");
 
         //Ref: https://www.programcreek.com/java-api-examples/index.php?api=org.jsoup.select.Elements
         ingredients.forEach((a) ->
@@ -77,6 +90,7 @@ public class RecipeDetailFragment extends Fragment {
                     "Measure: "+a.getMeasure()+"\n");
 
             //Saving Data for Shared Preferences for Widget
+
             Gson gson = new Gson();
             String json = gson.toJson(recipeIngredientsForWidgets);
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -88,6 +102,11 @@ public class RecipeDetailFragment extends Fragment {
         recipeRecyclerView=(RecyclerView)rootView.findViewById(R.id.recipe_detail_recycler);
         LinearLayoutManager rLayoutManager=new LinearLayoutManager(getContext());
         recipeRecyclerView.setLayoutManager(rLayoutManager);
+
+        //Setting "Instructions" tab here
+        instructionsTitle = (TextView) rootView.findViewById(R.id.instructionsTitle);
+        instructionsTitle.setBackgroundColor(R.color.grey);
+        instructionsTitle.append("Instructions");
 
         //Initializing Detail Adapter here
         RecipesDetailAdapter recipeDetailAdapter =new RecipesDetailAdapter((RecipeDetailActivity)getActivity());
