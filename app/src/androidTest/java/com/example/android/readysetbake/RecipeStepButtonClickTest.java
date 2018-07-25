@@ -2,6 +2,9 @@ package com.example.android.readysetbake;
 
 import android.app.Activity;
 import android.app.Instrumentation;
+import android.content.Context;
+import android.content.Intent;
+import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.contrib.RecyclerViewActions;
@@ -35,7 +38,16 @@ public class RecipeStepButtonClickTest {
         private IdlingResource mIdlingResource2;
 
         @Rule
-        public IntentsTestRule<RecipeDetailActivity> mIntentTestRule2 = new IntentsTestRule<>(RecipeDetailActivity.class);
+        public IntentsTestRule<RecipeDetailActivity> mIntentTestRule2 = new IntentsTestRule<RecipeDetailActivity>(RecipeDetailActivity.class){
+            @Override
+            protected Intent getActivityIntent() {
+                Context targetContext = InstrumentationRegistry.getInstrumentation()
+                        .getTargetContext();
+                Intent result = new Intent(targetContext, RecipeDetailActivity.class);
+                result.putExtra("Recipes", RecipeDetailActivity.SELECTED_RECIPES);
+                return result;
+            }
+        };
 
         @Before
         public void registerIdlingResource() {
