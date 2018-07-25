@@ -38,7 +38,6 @@ public class ReadySetBakeWidgetProvider extends AppWidgetProvider {
         intent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT|Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
         views.setPendingIntentTemplate(R.id.widget_gridview, pendingIntent);
 
         // Setting the GridWidgetService intent to act as the adapter for the GridView
@@ -83,8 +82,8 @@ public class ReadySetBakeWidgetProvider extends AppWidgetProvider {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, ReadySetBakeWidgetProvider.class));
 
-            //Triggers a data refresh in the widget
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_gridview);
+        //Triggers a data refresh in the widget
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widget_gridview);
 
         onUpdate(context,appWidgetManager,appWidgetIds);
 

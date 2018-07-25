@@ -90,6 +90,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
         getSupportActionBar().setTitle(recipeName);
 
         //Setting up Navigation on Toolbar
+        //Ref: https://www.i-programmer.info/professional-programmer/accreditation/10908-insiders-guide-to-udacity-android-developer-nanodegree-part-3-the-making-of-baking-app.html?start=1
         recipeToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -30,10 +30,11 @@ import static com.example.android.readysetbake.MainActivity.ALL_RECIPES;
  * Created by Aiman Nabeel on 31/05/2018.
  */
 
+//Ref: https://www.i-programmer.info/professional-programmer/accreditation/10908-insiders-guide-to-udacity-android-developer-nanodegree-part-3-the-making-of-baking-app.html?start=1
+
 public class RecipeFragment extends Fragment{
 
     public static final String SHARED_PREFS_KEY = "SHARED_PREFS_KEY";
-
 
     public RecipeFragment() {
 

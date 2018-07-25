@@ -11,6 +11,8 @@ import java.util.List;
  * Created by Aiman Nabeel on 01/06/2018.
  */
 
+//Ref: https://www.i-programmer.info/professional-programmer/accreditation/10908-insiders-guide-to-udacity-android-developer-nanodegree-part-3-the-making-of-baking-app.html?start=1
+
 public class Recipe implements Parcelable {
 
     private Integer id;

@@ -50,14 +50,7 @@ import static com.example.android.readysetbake.MainActivity.SELECTED_STEPS;
  * Created by Aiman Nabeel on 31/05/2018.
  */
 
-/**************************************************************************************************************
- *    This code has been adapted from the following source:
- *    Title: Udacity-Advanced-Developer-Nanodegree-Baking-App-2017
- *    Author: nikosvaggalis
- *    Date: 2017
- *    Code version: N/A
- *    Availability: https://github.com/nikosvaggalis/Udacity-Advanced-Developer-Nanodegree-Baking-App-2017.git
- **************************************************************************************************************/
+//Ref: https://www.i-programmer.info/professional-programmer/accreditation/10908-insiders-guide-to-udacity-android-developer-nanodegree-part-3-the-making-of-baking-app.html
 
 public class RecipeStepDetailFragment extends Fragment {
     ArrayList<Recipe> recipeList;
