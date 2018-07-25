@@ -64,10 +64,5 @@ public class RecipeStepButtonClickTest {
             intended(hasComponent(RecipeStepDetailFragment.class.getName()));
         }
 
-        @After
-        public void unregisterIdlingResource() {
-            if (mIdlingResource2 != null) {
-                Espresso.unregisterIdlingResources(mIdlingResource2);
-            }
-        }
+
     }
