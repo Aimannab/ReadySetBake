@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingResource;
@@ -27,6 +28,8 @@ import static android.support.test.espresso.intent.matcher.IntentMatchers.isInte
 import static org.hamcrest.Matchers.not;
 import android.support.test.espresso.IdlingResource;
 
+import java.util.ArrayList;
+
 /**
  * Created by Aiman Nabeel on 12/07/2018.
  */
@@ -37,15 +40,25 @@ public class RecipeStepButtonClickTest {
 
         private IdlingResource mIdlingResource2;
 
+
+
         @Rule
         public IntentsTestRule<RecipeDetailActivity> mIntentTestRule2 = new IntentsTestRule<RecipeDetailActivity>(RecipeDetailActivity.class){
+
             @Override
             protected Intent getActivityIntent() {
-                Context targetContext = InstrumentationRegistry.getInstrumentation()
-                        .getTargetContext();
-                Intent result = new Intent(targetContext, RecipeDetailActivity.class);
-                result.putExtra("Recipes", RecipeDetailActivity.SELECTED_RECIPES);
-                return result;
+                Recipe selectedRecipeItemIndex = new Recipe();
+                Bundle recipeBundleSelected = new Bundle();
+                ArrayList<Recipe> recipeSelected = new ArrayList<>();
+                recipeSelected.add(selectedRecipeItemIndex);
+                recipeBundleSelected.putParcelableArrayList(MainActivity.SELECTED_RECIPES, recipeSelected);
+
+                //Context targetContext = InstrumentationRegistry.getInstrumentation()
+                 //       .getTargetContext();
+                final Intent intent = new Intent(getActivity(), RecipeDetailActivity.class);
+                intent.putExtras(recipeBundleSelected);
+
+                return intent;
             }
         };
 

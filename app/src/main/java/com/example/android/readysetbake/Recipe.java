@@ -53,6 +53,10 @@ public class Recipe implements Parcelable {
         }
     };
 
+    public Recipe() {
+
+    }
+
     public Integer getId() {
         return id;
     }
