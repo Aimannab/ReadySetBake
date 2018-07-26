@@ -5,6 +5,7 @@ import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.Espresso;
 import android.support.test.espresso.IdlingResource;
@@ -29,6 +30,7 @@ import static org.hamcrest.Matchers.not;
 import android.support.test.espresso.IdlingResource;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Aiman Nabeel on 12/07/2018.
@@ -47,7 +49,14 @@ public class RecipeStepButtonClickTest {
 
             @Override
             protected Intent getActivityIntent() {
-                Recipe selectedRecipeItemIndex = new Recipe();
+                Parcel in;
+                String name = in.writeString("Nutella Pie");
+                Double quantity = in.writeDouble(1);
+                String measure;
+                String ingredient;
+                List<Ingredient> ingredient = new ArrayList<>();
+
+                Recipe selectedRecipeItemIndex =  new Recipe();
                 Bundle recipeBundleSelected = new Bundle();
                 ArrayList<Recipe> recipeSelected = new ArrayList<>();
                 recipeSelected.add(selectedRecipeItemIndex);

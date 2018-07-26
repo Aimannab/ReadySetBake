@@ -79,15 +79,15 @@ public class RecipeDetailFragment extends Fragment {
         ingredientsTitle.append("Ingredients");
 
         //Ref: https://www.programcreek.com/java-api-examples/index.php?api=org.jsoup.select.Elements
-        ingredients.forEach((a) ->
-        {
-            ingredientsTextView.append("\u2022 "+ a.getIngredient()+"\n");
-            ingredientsTextView.append("\t\t\t Quantity: "+a.getQuantity().toString()+"\n");
-            ingredientsTextView.append("\t\t\t Measure: "+a.getMeasure()+"\n\n");
+        for(Ingredient i : ingredients) {
 
-            recipeIngredientsForWidgets.add(a.getIngredient()+"\n"+
-                    "Quantity: "+a.getQuantity().toString()+"\n"+
-                    "Measure: "+a.getMeasure()+"\n");
+            ingredientsTextView.append("\u2022 " + i.getIngredient() + "\n");
+            ingredientsTextView.append("\t\t\t Quantity: " + i.getQuantity().toString() + "\n");
+            ingredientsTextView.append("\t\t\t Measure: " + i.getMeasure() + "\n\n");
+
+            recipeIngredientsForWidgets.add(i.getIngredient() + "\n" +
+                    "Quantity: " + i.getQuantity().toString() + "\n" +
+                    "Measure: " + i.getMeasure() + "\n");
 
             //Saving Data for Shared Preferences for Widget
 
@@ -96,7 +96,7 @@ public class RecipeDetailFragment extends Fragment {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
             SharedPreferences.Editor editor = prefs.edit();
             editor.putString(SHARED_PREFS_KEY_INGRED, json).commit();
-        });
+        }
 
         //Setting up Layout Manager here
         recipeRecyclerView=(RecyclerView)rootView.findViewById(R.id.recipe_detail_recycler);
