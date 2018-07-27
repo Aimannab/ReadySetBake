@@ -83,7 +83,6 @@ public class RecipeStepDetailFragment extends Fragment {
 
         clickListener =(RecipeDetailActivity)getActivity();
 
-        //Correction test
         if(savedInstanceState != null) {
             recipeSteps = savedInstanceState.getParcelableArrayList(SELECTED_STEPS);
             selectedIndex = savedInstanceState.getInt(SELECTED_INDEX);
@@ -95,6 +94,12 @@ public class RecipeStepDetailFragment extends Fragment {
                 recipeSteps =getArguments().getParcelableArrayList(SELECTED_STEPS);
                 selectedIndex=getArguments().getInt(SELECTED_INDEX);
                 recipeName=getArguments().getString("Title");
+            }
+            else {
+                recipeList =getArguments().getParcelableArrayList(SELECTED_RECIPES);
+                //casting List to ArrayList
+                recipeSteps=(ArrayList<Step>)recipeList.get(0).getSteps();
+                selectedIndex=0;
             }
         }
 
@@ -155,7 +160,7 @@ public class RecipeStepDetailFragment extends Fragment {
                     clickListener.onRecipeStepDetailItemClick(recipeSteps,recipeSteps.get(selectedIndex).getId() - 1,recipeName);
                 }
                 else {
-                    Toast.makeText(getActivity(),"You already are in the First step of the recipe", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"You are watching the First step of the recipe", Toast.LENGTH_SHORT).show();
 
                 }
             }});
@@ -171,7 +176,7 @@ public class RecipeStepDetailFragment extends Fragment {
                     clickListener.onRecipeStepDetailItemClick(recipeSteps,recipeSteps.get(selectedIndex).getId() + 1,recipeName);
                 }
                 else {
-                    Toast.makeText(getContext(),"You already are in the Last step of the recipe", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"You are watching the Last step of the recipe", Toast.LENGTH_SHORT).show();
 
                 }
             }});

@@ -1,11 +1,8 @@
 package com.example.android.readysetbake;
 
 import android.app.IntentService;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 
