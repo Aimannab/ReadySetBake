@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements RecipesAdapter.Re
     public void onRecipeListItemClick(Recipe selectedRecipeItemIndex) {
 
         if (recipeTwoPane) {
-            // In two-pane mode, show the detail view in this activity by adding or replacing the detail fragment using a fragment transaction.
             View view = findViewById(R.id.imageView);
             if (view.getVisibility() == View.INVISIBLE) {
                 findViewById(R.id.imageView).setVisibility(View.VISIBLE);
