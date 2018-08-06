@@ -59,6 +59,7 @@ public class RecipeStepDetailFragment extends Fragment {
     private int selectedIndex;
     String recipeName;
     private RecipeStepClickListener clickListener;
+
     //SimpleExoPlayer variables
     private SimpleExoPlayer exoPlayer;
     private SimpleExoPlayerView exoPlayerView;
@@ -115,7 +116,7 @@ public class RecipeStepDetailFragment extends Fragment {
         //Getting video URL
         String videoUrl = recipeSteps.get(selectedIndex).getVideoURL();
 
-        //Inflating view for phone or iPad
+        //Inflating view for phone or tablet
         if (rootView.findViewWithTag("sw600dp-port-recipe_step_detail")!=null) {
             recipeName=((RecipeDetailActivity) getActivity()).recipeName;
             ((RecipeDetailActivity) getActivity()).getSupportActionBar().setTitle(recipeName);

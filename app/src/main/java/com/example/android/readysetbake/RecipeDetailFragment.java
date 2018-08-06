@@ -69,31 +69,30 @@ public class RecipeDetailFragment extends Fragment {
 
         ArrayList<String> recipeIngredientsForWidgets= new ArrayList<>();
         recipeIngredientsForWidgets.add("ReadySetBake! - " + recipeName);
-        //recipeIngredientsForWidgets.add(recipeName);
 
         //Setting "Ingredients" tab here
         ingredientsTitle = (TextView) rootView.findViewById(R.id.ingredientsTitle);
         ingredientsTitle.setBackgroundColor(R.color.grey);
         ingredientsTitle.append("Ingredients");
 
-        //Ref: https://www.programcreek.com/java-api-examples/index.php?api=org.jsoup.select.Elements
-        for(Ingredient i : ingredients) {
+            //Ref: https://www.programcreek.com/java-api-examples/index.php?api=org.jsoup.select.Elements
+            for (Ingredient i : ingredients) {
 
-            ingredientsTextView.append("\u2022 " + i.getIngredient() + "\n");
-            ingredientsTextView.append("\t\t\t Quantity: " + i.getQuantity().toString() + "\n");
-            ingredientsTextView.append("\t\t\t Measure: " + i.getMeasure() + "\n\n");
+                ingredientsTextView.append("\u2022 " + i.getIngredient() + "\n");
+                ingredientsTextView.append("\t\t\t Quantity: " + i.getQuantity().toString() + "\n");
+                ingredientsTextView.append("\t\t\t Measure: " + i.getMeasure() + "\n\n");
 
-            recipeIngredientsForWidgets.add(i.getIngredient() + "\n" +
-                    "Quantity: " + i.getQuantity().toString() + "\n" +
-                    "Measure: " + i.getMeasure() + "\n");
+                recipeIngredientsForWidgets.add(i.getIngredient() + "\n" +
+                        "Quantity: " + i.getQuantity().toString() + "\n" +
+                        "Measure: " + i.getMeasure() + "\n");
 
-            //Saving Data for Shared Preferences for Widget
+                //Saving Data for Shared Preferences for Widget
 
-            Gson gson = new Gson();
-            String json = gson.toJson(recipeIngredientsForWidgets);
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-            SharedPreferences.Editor editor = prefs.edit();
-            editor.putString(SHARED_PREFS_KEY_INGRED, json).commit();
+                Gson gson = new Gson();
+                String json = gson.toJson(recipeIngredientsForWidgets);
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString(SHARED_PREFS_KEY_INGRED, json).commit();
         }
 
         //Setting up Layout Manager here
