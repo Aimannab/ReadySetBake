@@ -87,7 +87,6 @@ public class RecipeDetailFragment extends Fragment {
                         "Measure: " + i.getMeasure() + "\n");
 
                 //Saving Data for Shared Preferences for Widget
-
                 Gson gson = new Gson();
                 String json = gson.toJson(recipeIngredientsForWidgets);
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
