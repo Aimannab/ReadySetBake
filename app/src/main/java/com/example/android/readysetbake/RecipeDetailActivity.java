@@ -101,12 +101,12 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
                         fragmentManager.popBackStack(STACK_RECIPE_DETAIL, 0);
                     } else if (fragmentManager.getBackStackEntryCount()> 0) {
                         //Return to MainActivity Recipe screen
-                        finish();
+                        //finish();
                     }
                 }
                 else {
                     //Return to MainActivity Recipe screen
-                    finish();
+                    //finish();
                 }
 
             }

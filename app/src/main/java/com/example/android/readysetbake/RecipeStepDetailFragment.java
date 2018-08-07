@@ -250,6 +250,24 @@ public class RecipeStepDetailFragment extends Fragment {
 
     //Called when the fragment is no longer attached to its activity. This is called after onDestroy(),
     // except in the cases where the fragment instance is retained across Activity re-creation
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (Util.SDK_INT > 23) {
+            // initialize player
+            initializePlayer(Uri.parse(recipeSteps.get(selectedIndex).getVideoURL()));        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if ((Util.SDK_INT <= 23 || exoPlayer == null)) {
+            // initialize player
+            initializePlayer(Uri.parse(recipeSteps.get(selectedIndex).getVideoURL()));
+        }
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -277,10 +295,8 @@ public class RecipeStepDetailFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        if (exoPlayer!=null) {
             exoPlayer.stop();
             exoPlayer.release();
-        }
     }
 
     //Called when the Fragment is no longer resumed. This is generally tied to Activity.onPause of the containing Activity's lifecycle.
