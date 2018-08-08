@@ -124,6 +124,17 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     //Enabling clickListener for RecipeStepDetailFragment here
     @Override
     public void onRecipeStepDetailItemClick(List<Step> stepsOut, int itemSelectedIndex, String recipeName) {
