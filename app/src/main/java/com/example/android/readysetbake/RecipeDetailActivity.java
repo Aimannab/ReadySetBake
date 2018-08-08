@@ -28,7 +28,6 @@ import static com.example.android.readysetbake.RecipeStepDetailFragment.SELECTED
  * Created by Aiman Nabeel on 31/05/2018.
  */
 
-////Setting up layouts
 public class RecipeDetailActivity extends AppCompatActivity implements RecipesDetailAdapter.RecipeStepClickListener, RecipeStepDetailFragment.RecipeStepClickListener {
 
     static String ALL_RECIPES="All_Recipes";
