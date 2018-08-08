@@ -37,6 +37,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:support-v4:26.1.0'
 
     //Retrofit imports
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
@@ -60,7 +61,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
     androidTestCompile("com.android.support.test.espresso:espresso-contrib:2.2.2") {
         exclude group: 'com.android.support', module: 'appcompat'
-        exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'support-v7'
         exclude group: 'com.android.support', module: 'design'
         exclude module: 'support-annotations'

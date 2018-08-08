@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
@@ -65,6 +66,8 @@ public class RecipeStepDetailFragment extends Fragment {
     private SimpleExoPlayerView exoPlayerView;
     private BandwidthMeter bandwidthMeter;
     private Handler mainHandler;
+    private Long position;
+    static String SELECTED_POSITION = "Selected_Position";
 
     public RecipeStepDetailFragment() {
 
@@ -84,10 +87,14 @@ public class RecipeStepDetailFragment extends Fragment {
 
         clickListener =(RecipeDetailActivity)getActivity();
 
+        position = C.TIME_UNSET;
+
         if(savedInstanceState != null) {
             recipeSteps = savedInstanceState.getParcelableArrayList(SELECTED_STEPS);
             selectedIndex = savedInstanceState.getInt(SELECTED_INDEX);
             recipeName = savedInstanceState.getString("Title");
+            //For ExoPlayer
+            position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
         }
         else {
             recipeSteps =getArguments().getParcelableArrayList(SELECTED_STEPS);
@@ -238,6 +245,10 @@ public class RecipeStepDetailFragment extends Fragment {
             MediaSource mediaSource = new ExtractorMediaSource(mediaUri, new DefaultDataSourceFactory(getContext(), userAgent),
                     new DefaultExtractorsFactory(), null, null);
 
+            //For ExoPlayer onSaveInstance implementation
+            if (position != C.TIME_UNSET)
+                exoPlayer.seekTo(position);
+
             exoPlayer.prepare(mediaSource);
             exoPlayer.setPlayWhenReady(true);
         }
@@ -282,8 +293,8 @@ public class RecipeStepDetailFragment extends Fragment {
     //detached from the fragment. The next time the fragment needs to be displayed, a new view will be created.
     // This is called after onStop() and before onDestroy().
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
+    public void onDestroy() {
+        super.onDestroy();
         if (exoPlayer!=null) {
             exoPlayer.stop();
             exoPlayer.release();
@@ -295,8 +306,11 @@ public class RecipeStepDetailFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+        if (exoPlayer != null) {
             exoPlayer.stop();
             exoPlayer.release();
+            exoPlayer = null;
+        }
     }
 
     //Called when the Fragment is no longer resumed. This is generally tied to Activity.onPause of the containing Activity's lifecycle.
@@ -304,6 +318,7 @@ public class RecipeStepDetailFragment extends Fragment {
     public void onPause() {
         super.onPause();
         if (exoPlayer!=null) {
+            exoPlayer.getPlayWhenReady();
             exoPlayer.stop();
             exoPlayer.release();
         }

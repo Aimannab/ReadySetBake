@@ -1,20 +1,27 @@
 package com.example.android.readysetbake;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.VisibleForTesting;
 import android.support.test.espresso.IdlingResource;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.support.v4.app.FragmentManager;
 import android.widget.TextView;
 
+import com.google.android.exoplayer2.C;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.android.readysetbake.RecipeStepDetailFragment.SELECTED_POSITION;
 
 
 /**
@@ -33,6 +40,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
 
     private ArrayList<Recipe> recipeList;
     String recipeName;
+    private Long position;
 
     @Nullable
     private SimpleIdlingResource mIdlingResource;
@@ -53,6 +61,9 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_detail);
+
+        //To be used for onSaveInstance method - ExoPlayer
+        position = C.TIME_UNSET;
 
         //Getting Recipe Name on Toolbar
         if(savedInstanceState == null) {
@@ -98,15 +109,15 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
                 if (findViewById(R.id.recipe_fragment_container2) ==null) {
                     if (fragmentManager.getBackStackEntryCount()> 1) {
                         //Return to Recipe Detail screen
-                        fragmentManager.popBackStack(STACK_RECIPE_DETAIL, 0);
+                        fragmentManager.popBackStack();
                     } else if (fragmentManager.getBackStackEntryCount()> 0) {
                         //Return to MainActivity Recipe screen
-                        //finish();
+                        getSupportFragmentManager().popBackStack();
                     }
                 }
                 else {
                     //Return to MainActivity Recipe screen
-                    //finish();
+                    getSupportFragmentManager().popBackStack();
                 }
 
             }
@@ -145,5 +156,7 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("Title",recipeName);
+        //For ExoPlayer
+        outState.putLong(SELECTED_POSITION, position);
     }
 }
