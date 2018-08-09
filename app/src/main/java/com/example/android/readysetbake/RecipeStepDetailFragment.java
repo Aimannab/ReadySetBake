@@ -94,7 +94,7 @@ public class RecipeStepDetailFragment extends Fragment {
             selectedIndex = savedInstanceState.getInt(SELECTED_INDEX);
             recipeName = savedInstanceState.getString("Title");
             //For ExoPlayer
-            position = savedInstanceState.getLong(SELECTED_POSITION, C.TIME_UNSET);
+            position = savedInstanceState.getLong(SELECTED_POSITION, position);
         }
         else {
             recipeSteps =getArguments().getParcelableArrayList(SELECTED_STEPS);
@@ -198,6 +198,7 @@ public class RecipeStepDetailFragment extends Fragment {
         currentState.putParcelableArrayList(SELECTED_STEPS,recipeSteps);
         currentState.putInt(SELECTED_INDEX,selectedIndex);
         currentState.putString("Title",recipeName);
+        currentState.putLong(SELECTED_POSITION, position);
     }
 
     //Method initializePlayer to implement in onCreateView
@@ -273,13 +274,14 @@ public class RecipeStepDetailFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if ((Util.SDK_INT <= 23 || exoPlayer == null)) {
+        if ((Util.SDK_INT <= 23 || exoPlayer == null && Uri.parse(recipeSteps.get(selectedIndex).getVideoURL()) != null)) {
             // initialize player
+            exoPlayer.getPlayWhenReady();
             initializePlayer(Uri.parse(recipeSteps.get(selectedIndex).getVideoURL()));
         }
     }
 
-    @Override
+    /*@Override
     public void onDetach() {
         super.onDetach();
         if (exoPlayer!=null) {
@@ -287,7 +289,7 @@ public class RecipeStepDetailFragment extends Fragment {
             exoPlayer.release();
         }
 
-    }
+    }*/
 
     //Called when the view previously created by onCreateView(LayoutInflater, ViewGroup, Bundle) has been
     //detached from the fragment. The next time the fragment needs to be displayed, a new view will be created.
@@ -303,7 +305,7 @@ public class RecipeStepDetailFragment extends Fragment {
     }
 
     //Called when the Fragment is no longer started. This is generally tied to Activity.onStop of the containing Activity's lifecycle.
-    @Override
+    /*@Override
     public void onStop() {
         super.onStop();
         if (exoPlayer != null) {
@@ -311,14 +313,15 @@ public class RecipeStepDetailFragment extends Fragment {
             exoPlayer.release();
             exoPlayer = null;
         }
-    }
+    }*/
 
     //Called when the Fragment is no longer resumed. This is generally tied to Activity.onPause of the containing Activity's lifecycle.
     @Override
     public void onPause() {
         super.onPause();
         if (exoPlayer!=null) {
-            exoPlayer.getPlayWhenReady();
+            //exoPlayer.getPlayWhenReady();
+            position = exoPlayer.getCurrentPosition();
             exoPlayer.stop();
             exoPlayer.release();
         }
