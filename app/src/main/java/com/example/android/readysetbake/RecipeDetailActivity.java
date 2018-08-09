@@ -21,6 +21,7 @@ import com.google.android.exoplayer2.C;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.android.readysetbake.MainActivity.SELECTED_STEPS;
 import static com.example.android.readysetbake.RecipeStepDetailFragment.SELECTED_POSITION;
 
 
@@ -71,7 +72,6 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
             recipeList = new ArrayList<>();
             recipeList = recipeBundleSelected.getParcelableArrayList(SELECTED_RECIPES);
             recipeName = recipeList.get(0).getName();
-            //position = savedInstanceState.getLong(SELECTED_POSITION);
 
             //Setting up RecipeDetailFragment by replacing it with recipe_fragment_container i.e. activity_recipe_detail.xml
             final RecipeDetailFragment detailFragment = new RecipeDetailFragment();
@@ -92,7 +92,6 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipesDe
 
         } else {
             recipeName = savedInstanceState.getString("Title");
-            //position = savedInstanceState.getLong(SELECTED_POSITION);
         }
 
         //Setting up each Recipe's Toolbar
